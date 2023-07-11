@@ -9,14 +9,17 @@
 function reverse(str) {
   // return str.split('').reverse().join('');
 
-  // OPTION 2 WITH FOR LOOP
-  let reversed = '';
-
-	for (let char of str) {
-		reversed = char + reversed;
-	}
-
-	return reversed;
+  // OPTION 3 WITH REDUCE
+  return str.split('').reduce((rev, char) => char + rev, '');
 };
 
 module.exports = reverse;
+
+// OPTION 2 WITH FOR LOOP
+  // let reversed = '';
+
+	// for (let char of str) {
+	// 	reversed = char + reversed;
+	// }
+
+	// return reversed;
