@@ -23,7 +23,7 @@ function chunk(array, size) {
 
 module.exports = chunk;
 
-
+// SOLUTION 1
 // function chunk(array, size) {
 //   const chunked = [];
 
