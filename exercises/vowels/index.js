@@ -8,21 +8,20 @@
 //   vowels('Why?') --> 0
 
 // REGEXP SOLUTION
-// function vowels(str) {
-//   const vowelsOnly = str.replace(/[^aeiou]/gi, '').split('');
-//   return vowelsOnly.length();
-// }
+function vowels(str) {
+  return str.replace(/[^aeiou]/gi, '').length;
+}
 
 // ITERATIVE SOLUTION
-function vowels(str) {
-  let count = 0;
+// function vowels(str) {
+//   let count = 0;
 
-  for (c of str) {
-    if (c.match(/[aeiou]/i)) {
-      count += 1;
-    }
-  }
-  return count;
-}
+//   for (let c of str) {
+//     if (c.match(/[aeiou]/i)) {
+//       count += 1;
+//     }
+//   }
+//   return count;
+// }
 
 module.exports = vowels;
