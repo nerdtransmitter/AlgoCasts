@@ -15,11 +15,7 @@ function fib(n) {
     result.push(result[i - 2] + result[i - 1]);
   }
 
-  if (n < 2) {
-      return n;
-  } else {
-      return result[n];
-  }
+  return result[n];
 }
 
 module.exports = fib;
