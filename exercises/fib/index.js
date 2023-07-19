@@ -19,7 +19,24 @@
 //   return result[n];
 // }
 
-// RECURSIVE SOLUTION
+// RECURSIVE SOLUTION WITH MEMOIZATION
+function memoize(fn) {
+  const cache = {}; // where we store all of our calls to the fast version of our function
+  return function(...args) {
+  // since making a generic version of memorize usable with other functions, don't know how many args so use spread operator
+    if (cache[args]) {
+      // if cache[args] exist
+      return cache[args];
+    }
+
+    const result = fn.apply(this, args);
+    // store result we just created in cache object
+    cache[args] = result;
+
+    return result;
+  };
+}
+
 function fib(n) {
 	if (n < 2) { // base case
 		return n;
@@ -27,5 +44,16 @@ function fib(n) {
 
 	return fib(n-1) + fib(n - 2); // recursive step
 }
+
+fib = memoize(fib);
+
+// RECURSIVE SOLUTION
+// function fib(n) {
+// 	if (n < 2) { // base case
+// 		return n;
+// 	}
+
+// 	return fib(n-1) + fib(n - 2); // recursive step
+// }
 
 module.exports = fib;
