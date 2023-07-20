@@ -34,7 +34,6 @@ function weave(sourceOne, sourceTwo) {
 
   return q;
 }
-
 // MY SOLUTION
 // function weave(sourceOne, sourceTwo) {
 //   const q = new Queue;
