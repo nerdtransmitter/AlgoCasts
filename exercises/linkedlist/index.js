@@ -35,12 +35,11 @@ class LinkedList {
   }
 
   getLast() {
-    let node = this.head;
-
-    if (node === null) {
+    if (!this.head) {
       return null;
     }
 
+    let node = this.head;
     while(node.next) {
       node = node.next;
     }
