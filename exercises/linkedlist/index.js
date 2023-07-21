@@ -66,21 +66,16 @@ class LinkedList {
 
     if (!this.head.next) {
       this.head = null;
-      return;
+      return; // rest of code does not need to be executed if list size = 1
     }
 
     let previous = this.head;
     let node = previous.next;
-
-    while (node && node.next) {
+    while (node.next) {
       previous = node;
       node = node.next;
     }
-
-    if (node && !node.next) {
-      previous.next = null;
-    }
-
+    previous.next = null; // no need for conditional checking we're at end of list because of the while loop
   }
 
   // removeLast() {
