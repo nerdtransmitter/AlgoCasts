@@ -20,7 +20,7 @@ class LinkedList {
 
   size() {
     let counter = 0;
-    let node = this.head
+    let node = this.head;
 
     while (node) {
       counter++;
@@ -32,6 +32,20 @@ class LinkedList {
 
   getFirst() {
     return this.head;
+  }
+
+  getLast() {
+    let node = this.head;
+
+    if (node === null) {
+      return null;
+    }
+
+    while(node.next) {
+      node = node.next;
+    }
+
+    return node;
   }
 }
 
