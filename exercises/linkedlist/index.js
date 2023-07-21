@@ -48,10 +48,7 @@ class LinkedList {
   }
 
   clear() {
-    if (this.head) {
-      this.head.next = null;
-      this.head = this.head.next;
-    }
+    this.head = null;
   }
 }
 
