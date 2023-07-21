@@ -78,19 +78,15 @@ class LinkedList {
     previous.next = null; // no need for conditional checking we're at end of list because of the while loop
   }
 
-  // removeLast() {
-  //   if (!this.head) {
-  //     return;
-  //   }
+  insertLast(data) {
+    const last = this.getLast();
 
-  //   let node = this.head;
-  //   while(node.next) {
-  //     node = node.next;
-  //     if (node.next = null) {
-  //       node = null;
-  //     }
-  //   }
-  // }
+    if (!last) {
+      this.head = new Node(data);
+    }
+
+    last.next = new Node(data);
+  }
 }
 
 module.exports = { Node, LinkedList };
