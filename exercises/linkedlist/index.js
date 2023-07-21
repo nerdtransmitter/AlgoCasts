@@ -81,11 +81,31 @@ class LinkedList {
   insertLast(data) {
     const last = this.getLast();
 
-    if (!last) {
+    // if (!last) {
+    //   this.head = new Node(data);
+    // }
+
+    // last.next = new Node(data);
+
+    if (last) {
+      last.next = new Node(data);
+    } else {
       this.head = new Node(data);
     }
+  }
 
-    last.next = new Node(data);
+  getAt(i) {
+    let node = this.head;
+    let counter = 0;
+    while (node) {
+      if (counter === i) {
+        return node;
+      }
+
+      counter++;
+      node = node.next;
+    }
+    return null; // if index is bigger than index of last node or if node === null
   }
 }
 
