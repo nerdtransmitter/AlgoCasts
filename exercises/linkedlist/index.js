@@ -107,6 +107,24 @@ class LinkedList {
     }
     return null; // if index is bigger than index of last node or if node === null
   }
+
+  removeAt(i) {
+    if (!this.head) {
+      return;
+    }
+
+    if (i === 0) {
+      this.head = this.head.next;
+      return;
+    } else {
+      if (i < this.size()) {
+        const previous = this.getAt(i - 1);
+        previous.next = previous.next.next;
+      } else {
+        return;
+      }
+    }
+  }
 }
 
 module.exports = { Node, LinkedList };
