@@ -8,14 +8,14 @@ class Node {
     this.next = next;
   }
 }
-
 class LinkedList {
   constructor() {
     this.head = null;
   }
 
   insertFirst(data) {
-    this.head = new Node(data, this.head);
+    this.insertAt(data, 0);
+    // this.head = new Node(data, 0);
   }
 
   size() {
@@ -31,20 +31,22 @@ class LinkedList {
   }
 
   getFirst() {
-    return this.head;
+    return this.getAt(0);
+    // return this.head;
   }
 
   getLast() {
-    if (!this.head) {
-      return null;
-    }
+    return this.getAt(this.size() - 1); // using size creates runtime complexity issues
+    // if (!this.head) {
+    //   return null;
+    // }
 
-    let node = this.head;
-    while(node.next) {
-      node = node.next;
-    }
+    // let node = this.head;
+    // while(node.next) {
+    //   node = node.next;
+    // }
 
-    return node;
+    // return node;
   }
 
   clear() {
@@ -56,42 +58,40 @@ class LinkedList {
       return;
     }
 
-    this.head = this.head.next;
+    // this.head = this.head.next;
+    this.removeAt(0);
   }
 
   removeLast() {
-    if (!this.head) {
-      return;
-    }
+    // if (!this.head) {
+    //   return;
+    // }
 
-    if (!this.head.next) {
-      this.head = null;
-      return; // rest of code does not need to be executed if list size = 1
-    }
+    // if (!this.head.next) {
+    //   this.head = null;
+    //   return; // rest of code does not need to be executed if list size = 1
+    // }
 
-    let previous = this.head;
-    let node = previous.next;
-    while (node.next) {
-      previous = node;
-      node = node.next;
-    }
-    previous.next = null; // no need for conditional checking we're at end of list because of the while loop
+    // let previous = this.head;
+    // let node = previous.next;
+    // while (node.next) {
+    //   previous = node;
+    //   node = node.next;
+    // }
+    // previous.next = null; // no need for conditional checking we're at end of list because of the while loop
+    this.removeAt(this.size() - 1);
   }
 
   insertLast(data) {
-    const last = this.getLast();
+    const lastIndex = this.size;
+    this.insertAt(data, lastIndex + 1);
+    // const last = this.getLast();
 
-    // if (!last) {
+    // if (last) {
+    //   last.next = new Node(data);
+    // } else {
     //   this.head = new Node(data);
     // }
-
-    // last.next = new Node(data);
-
-    if (last) {
-      last.next = new Node(data);
-    } else {
-      this.head = new Node(data);
-    }
   }
 
   getAt(i) {
@@ -106,6 +106,57 @@ class LinkedList {
       node = node.next;
     }
     return null; // if index is bigger than index of last node or if node === null
+  }
+
+  removeAt(i) {
+    if (!this.head) {
+      return;
+    }
+
+    if (i === 0) {
+      this.head = this.head.next;
+      return;
+    }
+
+    const previous = this.getAt(i - 1);
+    if (!previous || !previous.next) {
+      return;
+    }
+    previous.next = previous.next.next;
+  }
+
+  insertAt(data, i) {
+    if (!this.head) {
+      this.head = new Node(data);
+      return;
+    }
+
+    if (i === 0) {
+      this.head = new Node(data, this.head);
+      return;
+    }
+
+    const previous = this.getAt(i - 1) || this.getLast(); // get previous index or if falsy get last and set to previous
+    previous.next = new Node(data, previous.next);
+  }
+
+  forEach(fn) {
+    let node = this.head;
+    let counter = 0;
+
+    while (node) {
+      fn(node, counter);
+      node = node.next;
+      counter++;
+    }
+  }
+
+  *[Symbol.iterator]() {
+    let node = this.head;
+    while(node) {
+      yield node;
+      node = node.next;
+    }
   }
 }
 
