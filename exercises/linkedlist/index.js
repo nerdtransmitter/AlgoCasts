@@ -116,14 +116,13 @@ class LinkedList {
     if (i === 0) {
       this.head = this.head.next;
       return;
-    } else {
-      if (i < this.size()) {
-        const previous = this.getAt(i - 1);
-        previous.next = previous.next.next;
-      } else {
-        return;
-      }
     }
+
+    const previous = this.getAt(i - 1);
+    if (!previous || !previous.next) {
+      return;
+    }
+    previous.next = previous.next.next;
   }
 }
 
