@@ -36,7 +36,7 @@ class LinkedList {
   }
 
   getLast() {
-    return this.getAt(this.size() - 1);
+    return this.getAt(this.size() - 1); // using size creates runtime complexity issues
     // if (!this.head) {
     //   return null;
     // }
@@ -138,6 +138,20 @@ class LinkedList {
 
     const previous = this.getAt(i - 1) || this.getLast(); // get previous index or if falsy get last and set to previous
     previous.next = new Node(data, previous.next);
+  }
+
+  forEach(fn) {
+    if (!this.head) {
+      return;
+    }
+
+    let node = this.head;
+
+    while (node) {
+      fn(node);
+      node = node.next;
+    }
+
   }
 }
 
