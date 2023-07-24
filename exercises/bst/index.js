@@ -5,7 +5,7 @@
 // and 'right'.
 // 2) Implement the 'insert' method for the
 // Node class.  Insert should accept an argument
-// 'data', then create an insert a new node
+// 'data', then create and insert a new node
 // at the appropriate location in the tree.
 // 3) Implement the 'contains' method for the Node
 // class.  Contains should accept a 'data' argument
@@ -19,9 +19,17 @@ class Node {
   }
 
   insert(data) {
-    const node = new Node(data);
-
-    
+    // if data is smaller than current node's data and current node has a left, pass it on to the node's left (recusive step)
+    if (data < this.data && this.left) {
+      this.left.insert(data);
+    } else if (data < this.data) {
+      // if it doesn't yet have a left, assign a new Node(data) to it
+      this.left = new Node(data);
+    } else if (data > this.data && this.right) {
+      this.right.insert(data);
+    } else if (data > this.data) {
+      this.right = new Node(data);
+    }
   }
 }
 
