@@ -40,7 +40,24 @@ function mergeSort(arr) {
 }
 
 function merge(left, right) {
+  let results = [];
 
+  while (left.length && right.length) {
+    if (left[0] < right[0]) {
+      results.push(left.shift());
+    } else {
+      results.push(right.shift());
+    }
+  }
+  if (right.length) {
+    results.push(...right);
+  }
+
+  if (left.length) {
+    results.push(...left);
+  }
+
+  return results;
 }
 
 module.exports = { bubbleSort, selectionSort, mergeSort, merge };
