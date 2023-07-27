@@ -1,10 +1,20 @@
 <head>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+  integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE="
+  crossorigin="anonymous"></script>
 </head>
 <body>
   <h1>Click the button</h1>
   <button>Me!</button>
   <script>
-    
+    // registering an event
+    $('button').on('click', () => {
+      console.log('Hello');
+    });
+    // manually triggering event
+    $('button').trigger('click');
+    // deregistering an event - disable all callbacks associated with a single event name
+    $('button').off('click');
   </script>
 </body>
